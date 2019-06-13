@@ -32,7 +32,10 @@ public class AdicionarActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Salvar dados do produto.
+                ListaComprasDB db = new ListaComprasDB(getBaseContext());
+                Produto produto = new Produto(txtNome.getText().toString(), Integer.parseInt(txtQuantidade.getText().toString()));
+                db.setProduto(produto);
+                finish();
             }
         });
 

@@ -70,8 +70,14 @@ public class ListaComprasDB extends SQLiteOpenHelper {
         return getWritableDatabase().insert(TABLE_NAME, null, contentValues);
     }
 
-    public void removerProduto(Produto produto) {
-        long id = produto.getId();
+    public void removerProduto(long id) {
         getWritableDatabase().delete(TABLE_NAME, COLUMN_NAME_ID + " = " + id, null);
+    }
+
+    public void atualizarProduto(long id, Produto produto) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_NAME_NOME, produto.getNome());
+        contentValues.put(COLUMN_NAME_QTD, produto.getQuantidade());
+        getWritableDatabase().update(TABLE_NAME, contentValues, COLUMN_NAME_ID + " = " + id, null);
     }
 }

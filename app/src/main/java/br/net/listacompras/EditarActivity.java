@@ -11,6 +11,7 @@ public class EditarActivity extends AppCompatActivity {
 
     private EditText txtNome;
     private EditText txtQuantidade;
+    private long id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,11 @@ public class EditarActivity extends AppCompatActivity {
         txtNome = findViewById(R.id.txtNomeEDT);
         txtQuantidade = findViewById(R.id.txtQuantidadeEDT);
 
+        this.id = getIntent().getExtras().getLong("id");
+        txtNome.setText(getIntent().getExtras().getString("nome"));
+        txtQuantidade.setText(getIntent().getExtras().getInt("quantidade")+"");
+
+
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,14 +39,19 @@ public class EditarActivity extends AppCompatActivity {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Salvar dados alterados.
+                ListaComprasDB db = new ListaComprasDB(getBaseContext());
+                Produto produto = new Produto(txtNome.getText().toString(),Integer.parseInt(txtQuantidade.getText().toString()));
+                db.atualizarProduto(id, produto);
+                finish();
             }
         });
 
         btnExcluir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Excluir produto.
+                ListaComprasDB db = new ListaComprasDB(getBaseContext());
+                db.removerProduto(id);
+                finish();
             }
         });
 

@@ -52,6 +52,12 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:text="Nome:"/>
+
                 <EditText
                     android:id="@+id/txtNomeEDT"
                     android:layout_width="match_parent"
@@ -62,12 +68,35 @@
                     android:layout_width="match_parent"
                     android:layout_height="16dp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:text="Quantidade:"/>
+
                 <EditText
                     android:id="@+id/txtQuantidadeEDT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:hint="Insira a quantidade que deseja:"/>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:text="Preço Unitário:"/>
+
+                <EditText
+                    android:id="@+id/txtPrecoEDT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:hint="Insira o preço unitário do produto:"/>
 
                 <Space
                     android:layout_width="match_parent"

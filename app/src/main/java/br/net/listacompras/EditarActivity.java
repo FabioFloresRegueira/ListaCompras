@@ -11,6 +11,7 @@ public class EditarActivity extends AppCompatActivity {
 
     private EditText txtNome;
     private EditText txtQuantidade;
+    private EditText txtPreco;
     private long id;
 
     @Override
@@ -23,10 +24,12 @@ public class EditarActivity extends AppCompatActivity {
         Button btnExcluir = findViewById(R.id.btnExcluir);
         txtNome = findViewById(R.id.txtNomeEDT);
         txtQuantidade = findViewById(R.id.txtQuantidadeEDT);
+        txtPreco = findViewById(R.id.txtPrecoEDT);
 
         this.id = getIntent().getExtras().getLong("id");
         txtNome.setText(getIntent().getExtras().getString("nome"));
         txtQuantidade.setText(getIntent().getExtras().getInt("quantidade")+"");
+        txtPreco.setText(getIntent().getExtras().getDouble("preco")+"");
 
 
         btnVoltar.setOnClickListener(new View.OnClickListener() {
@@ -40,7 +43,8 @@ public class EditarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ListaComprasDB db = new ListaComprasDB(getBaseContext());
-                Produto produto = new Produto(txtNome.getText().toString(),Integer.parseInt(txtQuantidade.getText().toString()));
+                double preco = Double.parseDouble(txtPreco.getText().toString()) * Integer.parseInt(txtQuantidade.getText().toString());
+                Produto produto = new Produto(txtNome.getText().toString(),Integer.parseInt(txtQuantidade.getText().toString()), preco);
                 db.atualizarProduto(id, produto);
                 finish();
             }

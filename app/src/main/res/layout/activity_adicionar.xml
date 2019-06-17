@@ -73,6 +73,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="16dp" />
 
+                <EditText
+                    android:id="@+id/txtPreco"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:hint="Insira o preço unitário do produto:"/>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp" />
+
                 <Button
                     android:id="@+id/btnAddProduto"
                     android:layout_width="wrap_content"

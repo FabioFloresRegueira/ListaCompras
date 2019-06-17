@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -38,17 +39,26 @@ public class MainActivity extends AppCompatActivity {
         lvProdutos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //TODO: Marcar item como comprado.
+            }
+        });
+
+        lvProdutos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 try{
                     Produto produto = (Produto) adapter.getItem(position);
                     Intent intent = new Intent(view.getContext(), EditarActivity.class);
                     intent.putExtra("id", produto.getId());
                     intent.putExtra("nome", produto.getNome());
                     intent.putExtra("quantidade", produto.getQuantidade());
+                    intent.putExtra("preco", produto.getPreco());
                     startActivity(intent);
                 } catch (Exception e) {
                     e.printStackTrace();
+                    return false;
                 }
-
+                return true;
             }
         });
     }

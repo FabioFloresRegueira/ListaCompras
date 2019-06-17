@@ -11,6 +11,7 @@ public class AdicionarActivity extends AppCompatActivity {
 
     private EditText txtNome;
     private EditText txtQuantidade;
+    private EditText txtPreco;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class AdicionarActivity extends AppCompatActivity {
         Button btnAdd = findViewById(R.id.btnAddProduto);
         txtNome = findViewById(R.id.txtNome);
         txtQuantidade = findViewById(R.id.txtQuantidade);
+        txtPreco = findViewById(R.id.txtPreco);
 
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,7 +35,8 @@ public class AdicionarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ListaComprasDB db = new ListaComprasDB(getBaseContext());
-                Produto produto = new Produto(txtNome.getText().toString(), Integer.parseInt(txtQuantidade.getText().toString()));
+                double preco = Double.parseDouble(txtPreco.getText().toString()) * Integer.parseInt(txtQuantidade.getText().toString());
+                Produto produto = new Produto(txtNome.getText().toString(), Integer.parseInt(txtQuantidade.getText().toString()), preco);
                 db.setProduto(produto);
                 finish();
             }

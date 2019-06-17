@@ -15,11 +15,12 @@ public class ListaComprasDB extends SQLiteOpenHelper {
     public static final String COLUMN_NAME_ID = "_id";
     public static final String COLUMN_NAME_NOME = "nome";
     public static final String COLUMN_NAME_QTD = "quantidade";
-    public static final String[] COLUMNS = {COLUMN_NAME_ID, COLUMN_NAME_NOME, COLUMN_NAME_QTD};
+    public static final String COLUMN_NAME_PRECO = "preco";
+    public static final String[] COLUMNS = {COLUMN_NAME_ID, COLUMN_NAME_NOME, COLUMN_NAME_QTD, COLUMN_NAME_PRECO};
     private static final String TAG = "ListaComprasDB";
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "listacompras.db";
-    private static final String SQL_CREATE = "CREATE TABLE " + TABLE_NAME + " ( " + COLUMN_NAME_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME_NOME + " TEXT, " + COLUMN_NAME_QTD + " INTEGER) ";
+    private static final String SQL_CREATE = "CREATE TABLE " + TABLE_NAME + " ( " + COLUMN_NAME_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME_NOME + " TEXT, " + COLUMN_NAME_QTD + " INTEGER, " + COLUMN_NAME_PRECO + " REAL) ";
     private static final String SQL_DROP = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
     public ListaComprasDB(Context context) {
@@ -54,7 +55,8 @@ public class ListaComprasDB extends SQLiteOpenHelper {
             long id = cursor.getLong(cursor.getColumnIndex(COLUMN_NAME_ID));
             String nome = cursor.getString(cursor.getColumnIndex(COLUMN_NAME_NOME));
             int quantidade = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_QTD));
-            Produto produto = new Produto(id, nome, quantidade);
+            double preco = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_PRECO));
+            Produto produto = new Produto(id, nome, quantidade, preco);
             produtos.add(produto);
             cursor.moveToNext();
         }
@@ -64,9 +66,11 @@ public class ListaComprasDB extends SQLiteOpenHelper {
     public long setProduto(Produto produto) {
         String nome = produto.getNome();
         int quantidade = produto.getQuantidade();
+        double preco = produto.getPreco();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_NAME_NOME, nome);
         contentValues.put(COLUMN_NAME_QTD, quantidade);
+        contentValues.put(COLUMN_NAME_PRECO, preco);
         return getWritableDatabase().insert(TABLE_NAME, null, contentValues);
     }
 
@@ -78,6 +82,7 @@ public class ListaComprasDB extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_NAME_NOME, produto.getNome());
         contentValues.put(COLUMN_NAME_QTD, produto.getQuantidade());
+        contentValues.put(COLUMN_NAME_PRECO, produto.getPreco());
         getWritableDatabase().update(TABLE_NAME, contentValues, COLUMN_NAME_ID + " = " + id, null);
     }
 }

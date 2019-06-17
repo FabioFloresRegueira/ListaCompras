@@ -8,7 +8,11 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Currency;
 import java.util.List;
+import java.util.Locale;
 
 public class ProdutosAdapter extends BaseAdapter {
     private List<Produto> produtos;
@@ -48,7 +52,9 @@ public class ProdutosAdapter extends BaseAdapter {
         //Atribuir atributos nesses objetos;
         nome.setText(produto.getNome());
         quantidade.setText("Quantidade: " + produto.getQuantidade());
-        preco.setText("Preço: " + produto.getPreco());
+
+        String precoFormatado = NumberFormat.getCurrencyInstance().format(produto.getPreco()/100);
+        preco.setText("Preço: " + precoFormatado);
 
         return view;
     }

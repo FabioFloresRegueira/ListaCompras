@@ -29,7 +29,8 @@ public class EditarActivity extends AppCompatActivity {
         this.id = getIntent().getExtras().getLong("id");
         txtNome.setText(getIntent().getExtras().getString("nome"));
         txtQuantidade.setText(getIntent().getExtras().getInt("quantidade")+"");
-        txtPreco.setText(getIntent().getExtras().getDouble("preco")+"");
+        double precoUnitario = (getIntent().getExtras().getDouble("preco"))/(getIntent().getExtras().getInt("quantidade"));
+        txtPreco.setText(precoUnitario/100+"");
 
 
         btnVoltar.setOnClickListener(new View.OnClickListener() {
@@ -43,8 +44,8 @@ public class EditarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ListaComprasDB db = new ListaComprasDB(getBaseContext());
-                double preco = Double.parseDouble(txtPreco.getText().toString()) * Integer.parseInt(txtQuantidade.getText().toString());
-                Produto produto = new Produto(txtNome.getText().toString(),Integer.parseInt(txtQuantidade.getText().toString()), preco);
+                double preco = Double.parseDouble(txtPreco.getText().toString()) * Double.parseDouble(txtQuantidade.getText().toString());
+                Produto produto = new Produto(txtNome.getText().toString(),Integer.parseInt(txtQuantidade.getText().toString()), (preco*100));
                 db.atualizarProduto(id, produto);
                 finish();
             }

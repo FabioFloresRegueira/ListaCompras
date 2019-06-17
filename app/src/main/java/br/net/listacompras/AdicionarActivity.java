@@ -35,8 +35,8 @@ public class AdicionarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ListaComprasDB db = new ListaComprasDB(getBaseContext());
-                double preco = Double.parseDouble(txtPreco.getText().toString()) * Integer.parseInt(txtQuantidade.getText().toString());
-                Produto produto = new Produto(txtNome.getText().toString(), Integer.parseInt(txtQuantidade.getText().toString()), preco);
+                double preco = Double.parseDouble(txtPreco.getText().toString()) * Double.parseDouble(txtQuantidade.getText().toString());
+                Produto produto = new Produto(txtNome.getText().toString(), Integer.parseInt(txtQuantidade.getText().toString()), (preco*100));
                 db.setProduto(produto);
                 finish();
             }

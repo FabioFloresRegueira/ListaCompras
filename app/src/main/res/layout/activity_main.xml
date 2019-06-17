@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -15,7 +16,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@color/colorPrimary"
-                android:minHeight="?attr/actionBarSize">
+                app:titleTextColor="@color/colorWhite"
+                android:minHeight="?attr/actionBarSize"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -39,22 +43,6 @@
                         android:backgroundTint="@color/colorPrimary"
                         android:tint="@color/colorWhite"
                         android:src="@drawable/dolar"/>
-
-                    <Space
-                        android:layout_width="16dp"
-                        android:layout_height="match_parent" />
-
-                    <ImageButton
-                        android:id="@+id/btnAdd"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:src="@drawable/add"/>
-
-                    <Space
-                        android:layout_width="16dp"
-                        android:layout_height="match_parent" />
 
                 </LinearLayout>
 

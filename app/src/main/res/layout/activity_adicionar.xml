@@ -52,6 +52,12 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:text="Nome:"/>
+
                 <EditText
                     android:id="@+id/txtNome"
                     android:layout_width="match_parent"
@@ -61,6 +67,12 @@
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:text="Quantidade:"/>
 
                 <EditText
                     android:id="@+id/txtQuantidade"
@@ -72,6 +84,12 @@
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:text="Preço Unitário:"/>
 
                 <EditText
                     android:id="@+id/txtPreco"

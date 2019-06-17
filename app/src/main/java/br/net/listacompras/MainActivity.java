@@ -2,9 +2,13 @@ package br.net.listacompras;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -27,19 +31,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageButton btnAdd = findViewById(R.id.btnAdd);
+        android.support.v7.widget.Toolbar toolbar= findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
+
         ImageButton btnTotal = findViewById(R.id.btnTotal);
         lvProdutos = findViewById(R.id.lvProdutos);
 
         listarProdutos();
-
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), AdicionarActivity.class);
-                startActivity(intent);
-            }
-        });
 
         btnTotal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +72,58 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.item_add:
+                adicionarProduto();
+                return true;
+            case R.id.item_limpar:
+                limparProdutos();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void adicionarProduto() {
+        Intent intent = new Intent(this, AdicionarActivity.class);
+        startActivity(intent);
+    }
+
+    private void limparProdutos() {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        Toast.makeText(getApplicationContext(), "Operação cancelada.", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        db.removerTodos();
+                        produtos.clear();
+                        listarProdutos();
+                        Toast.makeText(getApplicationContext(), "Todos os produtos foram deletados.", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
+        AlertDialog.Builder ab = new AlertDialog.Builder(this);
+        ab.setMessage("Deseja realmente excluir todos os produtos da lista?")
+                .setNegativeButton("Sim", dialogClickListener)
+                .setPositiveButton("Não", dialogClickListener)
+                .show();
     }
 
     @Override

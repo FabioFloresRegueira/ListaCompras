@@ -78,6 +78,10 @@ public class ListaComprasDB extends SQLiteOpenHelper {
         getWritableDatabase().delete(TABLE_NAME, COLUMN_NAME_ID + " = " + id, null);
     }
 
+    public void removerTodos() {
+        getWritableDatabase().delete(TABLE_NAME, COLUMN_NAME_ID + " > 0 ", null);
+    }
+
     public void atualizarProduto(long id, Produto produto) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_NAME_NOME, produto.getNome());

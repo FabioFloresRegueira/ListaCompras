@@ -32,6 +32,19 @@
                         android:layout_weight="1"/>
 
                     <ImageButton
+                        android:id="@+id/btnTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:tint="@color/colorWhite"
+                        android:src="@drawable/dolar"/>
+
+                    <Space
+                        android:layout_width="16dp"
+                        android:layout_height="match_parent" />
+
+                    <ImageButton
                         android:id="@+id/btnAdd"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

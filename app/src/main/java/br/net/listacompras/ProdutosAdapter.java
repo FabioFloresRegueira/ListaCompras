@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
@@ -48,14 +49,18 @@ public class ProdutosAdapter extends BaseAdapter {
         TextView nome = view.findViewById(R.id.li_nome);
         TextView quantidade = view.findViewById(R.id.li_quantidade);
         TextView preco = view.findViewById(R.id.li_preco);
+        ImageView comprado = view.findViewById(R.id.li_comprado);
 
         //Atribuir atributos nesses objetos;
         nome.setText(produto.getNome());
         quantidade.setText("Quantidade: " + produto.getQuantidade());
-
         String precoFormatado = NumberFormat.getCurrencyInstance().format(produto.getPreco()/100);
         preco.setText("Preço: " + precoFormatado);
-
+        if (produto.isComprado()) {
+            comprado.setVisibility(View.VISIBLE);
+        } else {
+            comprado.setVisibility(View.INVISIBLE);
+        }
         return view;
     }
 }

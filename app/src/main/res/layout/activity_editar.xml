@@ -59,7 +59,12 @@
                     android:text="Nome:"/>
 
                 <EditText
+                    android:inputType="textPersonName"
                     android:id="@+id/txtNomeEDT"
+                    android:maxLength="30"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:imeOptions="actionNext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Insira o nome do produto:"/>

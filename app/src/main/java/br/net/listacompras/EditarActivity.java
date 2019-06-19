@@ -47,7 +47,7 @@ public class EditarActivity extends AppCompatActivity {
                 if (verificarCampos()) {
                     ListaComprasDB db = new ListaComprasDB(getBaseContext());
                     double preco = Double.parseDouble(txtPreco.getText().toString()) * Double.parseDouble(txtQuantidade.getText().toString());
-                    Produto produto = new Produto(txtNome.getText().toString(),Integer.parseInt(txtQuantidade.getText().toString()), (preco*100));
+                    Produto produto = new Produto(txtNome.getText().toString(),Integer.parseInt(txtQuantidade.getText().toString()), (preco*100), false);
                     db.atualizarProduto(id, produto);
                     finish();
                 }

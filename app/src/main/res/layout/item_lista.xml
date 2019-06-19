@@ -40,6 +40,18 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/li_comprado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/done"
+        android:visibility="invisible"/>
+
+    <Space
+        android:layout_width="20dp"
+        android:layout_height="match_parent" />
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

@@ -51,13 +51,6 @@ public class MainActivity extends AppCompatActivity {
         lvProdutos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO: Marcar como comprado.
-            }
-        });
-
-        lvProdutos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 try{
                     Produto produto = (Produto) adapter.getItem(position);
                     Intent intent = new Intent(view.getContext(), EditarActivity.class);
@@ -68,7 +61,23 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    return false;
+                }
+            }
+        });
+
+        lvProdutos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                ImageView img = view.findViewById(R.id.li_comprado);
+                Produto produto = (Produto) adapter.getItem(position);
+                if (produto.isComprado()) {
+                    produto.setComprado(false);
+                    db.comprarProduto(id, produto);
+                    img.setVisibility(View.INVISIBLE);
+                } else {
+                    produto.setComprado(true);
+                    db.comprarProduto(id,produto);
+                    img.setVisibility(View.VISIBLE);
                 }
                 return true;
             }

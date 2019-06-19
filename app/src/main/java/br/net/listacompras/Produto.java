@@ -7,18 +7,21 @@ public class Produto {
     private String nome;
     private int quantidade;
     private double preco;
+    private boolean comprado;
 
-    public Produto(long id, String nome, int quantidade, double preco) {
+    public Produto(long id, String nome, int quantidade, double preco, boolean comprado) {
         this.id = id;
         this.nome = nome;
         this.quantidade = quantidade;
         this.preco = preco;
+        this.comprado = comprado;
     }
 
-    public Produto(String nome, int quantidade, double preco) {
+    public Produto(String nome, int quantidade, double preco, boolean comprado) {
         this.nome = nome;
         this.quantidade = quantidade;
         this.preco = preco;
+        this.comprado = comprado;
     }
 
     public void setId(long id) {
@@ -51,6 +54,14 @@ public class Produto {
 
     public void setPreco(double preco) {
         this.preco = preco;
+    }
+
+    public boolean isComprado() {
+        return comprado;
+    }
+
+    public void setComprado(boolean comprado) {
+        this.comprado = comprado;
     }
 
     @Override
